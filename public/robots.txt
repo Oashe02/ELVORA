@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Disallow: /auth/
+Disallow: /dashboard/
+
+# Host
+Host: https://thenuaims.com/
+
+# Sitemaps
+Sitemap: https://thenuaims.com/sitemap.xml
