@@ -9,15 +9,15 @@ import { useSettingStore } from "@/store/useSettingStore";
 import NextApp from "next/app"; // <-- import Next.js App
 import { CartProvider, useCart } from "react-use-cart";
 import axiosInstance from "@/lib/axiosInstance";
-import { Instrument_Sans } from "next/font/google";
+import { Red_Hat_Display } from "next/font/google";
 import { useAuthStore } from "@/store/useAuthStore";
 import { jwtDecode } from "jwt-decode";
 
-const instrumentSans = Instrument_Sans({
+const redHatDisplay = Red_Hat_Display({
 	subsets: ["latin"],
 	display: "swap",
-	variable: "--font-instrument-sans", // optional for Tailwind or CSS var
-});
+	variable: "--font-red-hat-display",
+  });
 export default function App({ Component, pageProps }) {
 	const setSetting = useSettingStore((state) => state.setSetting);
 	const { setSession } = useAuthStore();
@@ -43,7 +43,7 @@ export default function App({ Component, pageProps }) {
 	}, []);
 
 	return (
-		<div className={instrumentSans.className}>
+		<div className={redHatDisplay.className}>
 			<CartProvider>
 				<TopLoader />
 				<Toaster position="bottom-right" />

@@ -332,3 +332,10 @@ body {
 	animation: fade-in 0.25s ease-in-out;
   }
   
+  @layer utilities {
+	@media (min-width: 1440px) and (max-width: 1536px) {
+	  .macbook-menu-width {
+		width: 1450px !important;
+	  }
+	}
+  }

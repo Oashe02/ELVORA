@@ -10,8 +10,8 @@ export const ServerPriceDisplay = ({ amount = 0, className = "" }) => {
 	);
 
 	return (
-		<span className={"flex flex-row items-center gap-1 " + className}>
-			<img src="/symbol.webp" className="w-4 h-4" />
+		<span className={"flex flex-row items-center gap-2 " + className}>
+			<img src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T10%3A08%3A10.947Z-Vector%20Smart%20Object%20copy%207.png" className="w-4 h-4" />
 			{formattedPrice}
 		</span>
 	);

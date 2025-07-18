@@ -95,28 +95,29 @@ const isProductDetailPage = pathname?.startsWith("/product");
   href="https://wa.me/#"
   target="_blank"
   rel="noopener noreferrer"
-  className=" bg-black/30 border border-white rounded-full p-2 shadow-lg hover:scale-105 transition"
+  className="w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:scale-105 transition duration-300"
   aria-label="WhatsApp"
 >
   <img
-    src="/whatsapp-white.png"
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-17T15%3A54%3A43.385Z-Vector%20Smart%20Object%20%281%29.png"
     alt="WhatsApp"
-    className="w-8 h-8 object-contain"
+    className="w-36 h-36 object-contain"
   />
 </a>
 
 {/* Phone Call Icon */}
 <a
   href="tel:#"
-  className=" bg-black/30 border border-white rounded-full p-2 shadow-lg hover:scale-105 transition"
+  className="w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:scale-105 transition duration-300"
   aria-label="Call"
 >
   <img
-    src="/telephone-white.png"
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-17T15%3A55%3A29.820Z-Vector%20Smart%20Objecttt.png"
     alt="Call"
-    className="w-8 h-8 object-contain"
+    className="w-36 h-36 object-contain"
   />
 </a>
+
 </div>
 
       <Swiper
@@ -162,8 +163,8 @@ const isProductDetailPage = pathname?.startsWith("/product");
         )}
 
         {/* overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div> */}
 
         {/* content */}
         <div className="absolute inset-0 flex items-center">

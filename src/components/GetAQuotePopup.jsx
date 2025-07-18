@@ -7,7 +7,7 @@ import axiosInstance from "@/lib/axiosInstance";
 import { CheckCircle } from "lucide-react";
 
 
-const GetAQuotePopup = () => {
+const GetAQuotePopup = ({isScrolled = false }) => {
   const [file, setFile] = useState(null);
   const [form, setForm] = useState({
     name: "",
@@ -54,15 +54,25 @@ const GetAQuotePopup = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="px-4 py-2 border rounded-full text-sm font-semibold border-gray-300 bg-gray-50 text-gray-600 hover:bg-pink-600 hover:text-white transition">
+      <button
+          className={`h-[35px] w-[136px] rounded-full text-sm font-semibold transition border 
+          ${isScrolled 
+            ? "border-gray-300 text-gray-600 bg-white hover:bg-gray-100" 
+            : "border-gray-200 text-white hover:bg-[#3096a5] hover:text-white"
+          }`}
+        >
           GET A QUOTE
         </button>
+
       </DialogTrigger>
       <DialogContent className="w-full max-w-md p-6 border border-gray-500 shadow-2xl">
         <div className="text-center mb-6">
-          <h2 className="text-lg font-semibold border border-gray-300 px-6 py-1 rounded-full inline-block">
-            GET A QUOTE
-          </h2>
+        <h2
+  className={`text-[14px] font-bold border px-6 py-1 rounded-full inline-block transition-all duration-300 
+    ${isScrolled ? "border-gray-800 text-black" : "border-gray-300 text-white"}`}
+>
+  GET A QUOTE
+</h2>
           <p className="mt-2 text-sm font-medium tracking-widest text-gray-600 uppercase">
             Submit Your Inquiry Now
           </p>

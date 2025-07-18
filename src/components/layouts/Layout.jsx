@@ -20,6 +20,8 @@ const Layout = ({ children, announcements, categories, products, banners }) => {
 
   return (
     <main className="relative">
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/50 via-black/20 to-transparent z-40 pointer-events-none" />
+
       <SliderOne bannersString={JSON.stringify(banners)} />
 
       {/* Navigation Container */}
