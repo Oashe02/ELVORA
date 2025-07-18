@@ -16,7 +16,7 @@ const Footer = () => {
           "url('https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-01T13%3A35%3A19.979Z-bouquet-pink-roses-close-up-generative-ai.jpg')",
       }}
     >
-      <div className="absolute inset-0 bg-pink-200/20 group-hover:bg-black/30 transition duration-300"></div>
+      <div className="absolute inset-0 bg-white/60 group-hover:bg-black/30 transition duration-300"></div>
       <h3 className="text-white text-4xl md:text-5xl tracking-wide font-light mb-6 z-10 text-center">
         FOR ALL THE <br /> LATEST NEWS
       </h3>
@@ -32,7 +32,7 @@ const Footer = () => {
           "url('https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-01T13%3A35%3A19.979Z-bouquet-pink-roses-close-up-generative-ai.jpg')",
       }}
     >
-      <div className="absolute inset-0 bg-pink-600/20 group-hover:bg-black/30 transition duration-300"></div>
+      <div className="absolute inset-0 bg-white/60 group-hover:bg-black/30 transition duration-300"></div>
 
       <form className="flex flex-col sm:flex-row justify-center items-center gap-4 z-10">
         <input
@@ -88,7 +88,7 @@ const Footer = () => {
             },
           ].map((section, idx) => (
             <div key={idx}>
-              <h4 className="uppercase font-semibold mb-4 text-sm tracking-wider">
+              <h4 className="uppercase font-semibold mb-4 text-sm tracking-wider border-b border-gray-400">
                 {section.title}
               </h4>
               <ul className="space-y-2">
@@ -105,10 +105,10 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Row */}
-        <div className="mt-10 pt-3 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+        <div className="mt-10 pt-3 flex flex-col md:flex-row items-center justify-between gap-6 text-sm ">
           {/* Social */}
-          <div className="text-center md:text-left">
-            <p className="uppercase text-xs font-medium mb-2">Visit Our Social Platform</p>
+          <div className="text-center md:text-left mt-[10rem]">
+            <p className="uppercase text-xs font-medium mb-2 text-gray-400">Visit Our Social Platform</p>
             <div className="flex gap-3 justify-center md:justify-start">
               {["facebook", "youtube", "instagram", "linkedin", "whatsapp", "amazon"].map(
                 (platform, i) => (
@@ -139,19 +139,19 @@ const Footer = () => {
               height={100}
               className="mx-auto "
             />
-            <p className="text-gray-500 text-md">
+            <p className="text-gray-400 text-md mt-[4rem]">
              Copyright &copy; 2025 www.elvora.ae. All rights reserved.
             </p>
           </div>
 
           {/* Payments */}
-          <div className="text-center md:text-right">
-            <p className="uppercase text-xs font-medium mb-2">Secure Ordering and Transactions</p>
+          <div className="text-center md:text-right mt-[10rem]">
+            <p className="uppercase text-xs font-medium mb-2 text-gray-400">Secure Ordering and Transactions</p>
             <Image
-              src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-01T14%3A09%3A36.595Z-card-removebg-preview.png"
+              src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T19%3A01%3A03.935Z-Layer%2014.png"
               alt="Payments"
-              width={160}
-              height={60}
+              width={240}
+              height={90}
               className="object-contain mx-auto md:mx-0"
             />
           </div>

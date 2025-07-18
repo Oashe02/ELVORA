@@ -12,18 +12,17 @@ const Achievements = () => {
   ];
 
   return (
-    <section className="bg-[#f2f3f4] py-16 px-4">
+    <section className="bg-[#ececec] py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <div className="mb-12">
-          <h3 className="text-[20px] md:text-[22px] font-serif tracking-[0.08em] text-gray-800 uppercase mb-1">
+          <h3 className="text-[24.7px] uppercase font-[400] text-black font-[century] inline-block border-b-[2px] border-[#3096a5] leading-[1px] tracking-[0.05em] pb-4">
             Achievements
           </h3>
-          <div className="w-36 h-[2px] bg-green-600"></div>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {stats.map((stat, index) => (
             <CounterBox
               key={index}
@@ -71,8 +70,8 @@ const CounterBox = ({ value, label, delay }) => {
       transition={{ delay, duration: 0.5 }}
       className="text-black"
     >
-      <h4 className="text-[32px] md:text-[36px] font-semibold mb-1">{count}+</h4>
-      <p className="uppercase text-[14px] tracking-widest">{label}</p>
+      <h4 className="text-[32px]   mb-1">{count}+</h4>
+      <p className="uppercase text-[16px] tracking-widest font-bold">{label}</p>
     </motion.div>
   );
 };

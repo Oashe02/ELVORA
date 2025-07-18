@@ -120,30 +120,26 @@ import "swiper/css"
 import "swiper/css/navigation"
 
 const StarBox = () => (
-  <div className="w-6 h-6 bg-black/80 flex items-center justify-center">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="#fff"
-      viewBox="0 0 24 24"
-      className="w-4.5 h-4.5"
-    >
-      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-    </svg>
+  <div className="w-6 h-6  flex items-center justify-center">
+    <img
+      src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T17%3A27%3A46.981Z-1star.png"
+      alt="star"
+      className="w-5.5 h-5.5 object-contain"
+    />
   </div>
-)
+);
+
 
 const TickBox = () => (
-  <div className="w-6 h-6 flex items-center justify-center mb-3">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="#b5b5b5"
-      viewBox="0 0 24 24"
-      className="w-4.5 h-4.5"
-    >
-      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-    </svg>
+  <div className="w-16 h-16 flex items-center justify-center mb-3">
+    <img
+      src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T17%3A31%3A13.868Z-verified_icon.png"
+      alt="Verified"
+      className="w-4.5 h-4.5 object-contain"
+    />
   </div>
-)
+);
+
 
 const TestimonialSlider = ({ data = [], limit = 10 }) => {
   const [isClient, setIsClient] = useState(false)
@@ -156,7 +152,7 @@ const TestimonialSlider = ({ data = [], limit = 10 }) => {
   if (!isClient || !reviews.length) return null
 
   return (
-    <section className="bg-[#e9e9e9] py-14 relative overflow-hidden">
+    <section className="bg-[#e7e7e7] py-14 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         {/* Title */}
         <div className="text-center mb-10">
@@ -187,7 +183,7 @@ const TestimonialSlider = ({ data = [], limit = 10 }) => {
               <div className="bg-[#e9e9e9] h-full min-h-[220px] flex flex-col text-left px-4 py-3">
                 {/* Rating & Verified */}
                 <div className="flex justify-between items-center mb-2">
-                  <div className="flex gap-1">
+                  <div className="flex ">
                     {[...Array(item.rating)].map((_, i) => (
                       <StarBox key={i} />
                     ))}
@@ -195,13 +191,12 @@ const TestimonialSlider = ({ data = [], limit = 10 }) => {
                   {item.verified && (
                     <div className="flex items-center text-xs text-gray-700 mt-[0.3rem]">
                       <TickBox />
-                      <span className="text-[10px] tracking-wide">VERIFIED</span>
                     </div>
                   )}
                 </div>
 
                 {/* Name */}
-                <h4 className="text-sm font-medium text-gray-800 mb-2 uppercase">
+                <h4 className="text-sm font-medium text-black mb-2 uppercase">
                   {item.userName}
                 </h4>
 
@@ -220,25 +215,25 @@ const TestimonialSlider = ({ data = [], limit = 10 }) => {
         </Swiper>
 
         {/* Custom Arrows */}
-        <div className="custom-prev absolute -left-1 ml-[2.5rem] top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 hover:shadow-xl hover:scale-110 hover:rounded-lg transition duration-300 group">
-          <Image
-            src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-12T07%3A58%3A10.808Z-back.png"
-            alt="Previous"
-            width={40}
-            height={40}
-            className="opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-          />
-        </div>
+        <div className="custom-prev absolute -left-[-2rem] top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 group mt-[2rem]">
+  <Image
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A00.404Z-arrow_left_without_white_glow.png"
+    alt="Previous"
+    width={40}
+    height={40}
+    className="opacity-90 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
+  />
+</div>
 
-        <div className="custom-next absolute -right-1 mr-[2.5rem] top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 hover:shadow-xl hover:rounded-lg hover:scale-110 transition duration-300 group">
-          <Image
-            src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-12T07%3A59%3A01.528Z-front.png"
-            alt="Next"
-            width={40}
-            height={40}
-            className="opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-          />
-        </div>
+<div className="custom-next absolute -right-[-2rem] top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 group mt-[2rem]">
+  <Image
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A55.700Z-arrow_right_without_white_glow.png"
+    alt="Next"
+    width={40}
+    height={40}
+    className="opacity-90 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5] "
+  />
+</div>
       </div>
 
       <style jsx global>{`
