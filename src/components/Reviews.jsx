@@ -28,6 +28,7 @@ export default function Reviews({ productId, reviews, setReviews }) {
     const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [visibleReviews, setVisibleReviews] = useState(5);
 
     // Average rating and star distribution
     const averageRating =
@@ -82,95 +83,120 @@ export default function Reviews({ productId, reviews, setReviews }) {
 
     return (
         <div className="container mx-auto px-4 py-8 md:py-12">
-          
-			  <h3 className="text-3xl font-bold text-gray-900 mb-4">Customers Say</h3>
-			<div className="flex flex-col md:flex-row gap-6">
-				  {/* Left: Reviews List */}
-            <div className="basis-0 grow min-w-0 md:w-[700px]">
-              
-                {reviews.length === 0 ? (
-                    <div className="text-center py-16 px-6">
-                        <div className="w-20 h-20 mx-auto mb-4 bg-gray-100 flex items-center justify-center">
-                            <StarIcon className="h-10 w-10 text-[#3096a5] fill-[#3096a5]" />
-                        </div>
-                        <p className="text-xl text-gray-600 mb-2">No reviews yet!</p>
-                        <p className="text-gray-500">Be the first to share your experience with this product.</p>
-                    </div>
-                ) : (
-                    <div className="divide-y divide-gray-100 bg-white shadow border border-gray-200">
-                        {reviews.map((review, index) => (
-                            <div key={index} className="p-6 hover:bg-gray-50 transition-colors duration-200">
-                                <div className="flex items-start gap-4">
-                                    <div className="flex-shrink-0">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-lg">
-                                            {(review.userName || "A").charAt(0).toUpperCase()}
-                                        </div>
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <div className="flex items-center gap-3 mb-2">
-                                            <div className="flex items-center gap-1">
-                                                {[...Array(5)].map((_, i) => (
-                                                    <StarIcon
-                                                        key={i}
-                                                        className={`h-4 w-4 ${i < review.rating ? "fill-[#3096a5] text-[#3096a5]" : "fill-gray-200 text-gray-200"}`}
-                                                    />
-                                                ))}
-                                            </div>
-                                            <span className="text-sm font-medium text-gray-900">
-                                                {review.userName || "Anonymous"}
-                                            </span>
-                                        </div>
-                                        <h4 className="font-semibold text-lg text-gray-900 mb-2">{review.title}</h4>
-                                        <p className="text-gray-700 leading-relaxed">{review.comment}</p>
-                                    </div>
-                                </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">Customers Say</h3>
+            <div className="flex flex-col md:flex-row gap-6">
+                {/* Left: Reviews List */}
+                <div className="basis-0 grow min-w-0 md:w-[700px]">
+                    {reviews.length === 0 ? (
+                        <div className="text-center py-16 px-6">
+                            <div className="w-20 h-20 mx-auto mb-4 bg-gray-100 flex items-center justify-center">
+                                <StarIcon className="h-10 w-10 text-[#3096a5] fill-[#3096a5]" />
                             </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+                            <p className="text-xl text-gray-600 mb-2">No reviews yet!</p>
+                            <p className="text-gray-500">Be the first to share your experience with this product.</p>
+                        </div>
+                    ) : (
+                        <>
+                            <div
+                                className="divide-y divide-gray-100 bg-white shadow border border-gray-200 transition-all duration-500"
+                                style={{
+                                    overflow: "hidden",
+                                    maxHeight: `${visibleReviews * 180}px`, // Adjust 180 if your review card is taller/shorter
+                                }}
+                            >
+                                {reviews.slice(0, visibleReviews).map((review, index) => (
+                                    <div key={index} className="p-6 hover:bg-gray-50 transition-colors duration-200">
+                                        <div className="flex items-start gap-4">
+                                            <div className="flex-shrink-0">
+                                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-lg">
+                                                    {(review.userName || "A").charAt(0).toUpperCase()}
+                                                </div>
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex items-center gap-3 mb-2">
+                                                    <div className="flex items-center gap-1">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <StarIcon
+                                                                key={i}
+                                                                className={`h-4 w-4 ${i < review.rating ? "fill-[#3096a5] text-[#3096a5]" : "fill-gray-200 text-gray-200"}`}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                    <span className="text-sm font-medium text-gray-900">
+                                                        {review.userName || "Anonymous"}
+                                                    </span>
+                                                </div>
+                                                <h4 className="font-semibold text-lg text-gray-900 mb-2">{review.title}</h4>
+                                                <p className="text-gray-700 leading-relaxed">{review.comment}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            {/* Read more / Collapse controls */}
+                            <div className="mt-4 flex gap-4 items-center">
+                                {visibleReviews < reviews.length && (
+                                    <button
+                                        className="text-[#3096a5] underline text-sm font-semibold transition-colors duration-200"
+                                        onClick={() => setVisibleReviews(v => Math.min(v + 3, reviews.length))}
+                                    >
+                                        Read more
+                                    </button>
+                                )}
+                                {reviews.length > 5 && visibleReviews > 5 && (
+                                    <button
+                                        className="text-[#3096a5] underline text-sm font-semibold transition-colors duration-200"
+                                        onClick={() => setVisibleReviews(5)}
+                                    >
+                                        Collapse
+                                    </button>
+                                )}
+                            </div>
+                        </>
+                    )}
+                </div>
 
-            {/* Right: Amazon-style summary */}
-            <div className="w-full md:w-[340px] flex-shrink-0">
-                <div className="bg-white shadow border border-gray-200 p-6  top-24">
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Customer reviews</h4>
-                    <div className="flex items-center mb-2">
-                        <span className="text-2xl font-bold text-[#3096a5] mr-2">{averageRating}</span>
-                        <div className="flex items-center">
-                            {[...Array(5)].map((_, i) => (
-                                <StarIcon
-                                    key={i}
-                                    className={`h-5 w-5 ${i < Math.round(averageRating) ? "fill-[#3096a5] text-[#3096a5]" : "fill-gray-200 text-gray-200"}`}
-                                />
+                {/* Right: Amazon-style summary */}
+                <div className="w-full md:w-[340px] flex-shrink-0">
+                    <div className="bg-white shadow border border-gray-200 p-6 sticky top-48">
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">Customer reviews</h4>
+                        <div className="flex items-center mb-2">
+                            <span className="text-2xl font-bold text-[#3096a5] mr-2">{averageRating}</span>
+                            <div className="flex items-center">
+                                {[...Array(5)].map((_, i) => (
+                                    <StarIcon
+                                        key={i}
+                                        className={`h-5 w-5 ${i < Math.round(averageRating) ? "fill-[#3096a5] text-[#3096a5]" : "fill-gray-200 text-gray-200"}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                        <div className="text-gray-600 mb-4">{reviews.length} global ratings</div>
+                        {/* Star bars */}
+                        <div className="space-y-1 mb-6">
+                            {[5, 4, 3, 2, 1].map((star, idx) => (
+                                <div key={star} className="flex items-center gap-2">
+                                    <span className="text-sm text-gray-700 w-10">{star} star</span>
+                                    <div className="flex-1 h-3 bg-gray-200">
+                                        <div
+                                            className="h-3 bg-[#3096a5]"
+                                            style={{ width: `${starPercents[idx]}%` }}
+                                        />
+                                    </div>
+                                    <span className="text-xs text-gray-700 w-8 text-right">{starPercents[idx]}%</span>
+                                </div>
                             ))}
                         </div>
+                        {/* Write review button */}
+                        <button
+                            onClick={() => setShowModal(true)}
+                            className="w-full mt-2 py-2 border border-gray-300 text-gray-900 font-semibold hover:bg-gray-100 transition"
+                        >
+                            Write a product review
+                        </button>
                     </div>
-                    <div className="text-gray-600 mb-4">{reviews.length} global ratings</div>
-                    {/* Star bars */}
-                    <div className="space-y-1 mb-6">
-                        {[5, 4, 3, 2, 1].map((star, idx) => (
-                            <div key={star} className="flex items-center gap-2">
-                                <span className="text-sm text-gray-700 w-10">{star} star</span>
-                                <div className="flex-1 h-3 bg-gray-200">
-                                    <div
-                                        className="h-3 bg-[#3096a5]"
-                                        style={{ width: `${starPercents[idx]}%` }}
-                                    />
-                                </div>
-                                <span className="text-xs text-gray-700 w-8 text-right">{starPercents[idx]}%</span>
-                            </div>
-                        ))}
-                    </div>
-                    {/* Write review button */}
-                    <button
-                        onClick={() => setShowModal(true)}
-                        className="w-full mt-2 py-2 border border-gray-300 text-gray-900 font-semibold hover:bg-gray-100 transition"
-                    >
-                        Write a product review
-                    </button>
                 </div>
             </div>
-		</div>	
 
             {/* Modal for writing a review */}
             <Modal open={showModal} onClose={() => setShowModal(false)}>
