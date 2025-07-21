@@ -1662,70 +1662,65 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                   slidesPerView={1}
                   spaceBetween={0}
                   speed={300}
-                  thumbs={{
-                    swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
-                  }}
-                  modules={[Navigation, Thumbs]}
-                  className="mainSwiper  overflow-hidden"
-                  loop={false}
-                  allowTouchMove={false} // Disable touch to prevent multi-slide issues
-                  noSwiping={true}
-                  noSwipingClass="swiper-slide"
-                  onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
-                  centeredSlides={false}
-                  watchSlidesProgress={true}
-                >
-                  {mediaItems.map((item, index) => (
-                    <SwiperSlide key={index}>
-                      <div onClick={() => handleImageClick(index)}>
-                        {item.endsWith(".mp4") ? (
-                          <video
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            poster={product.thumbnail}
-                            className="w-full aspect-[3/4] object-cover"
-                          >
-                            <source src={item} type="video/mp4" />
-                          </video>
-                        ) : (
-                          <Image
-                            src={item || "/placeholder.svg"}
-                            alt={`product-image-${index}`}
-                            width={1000}
-                            height={1333}
-                            className="w-full object-cover cursor-pointer aspect-[3/4]"
-                          />
-                        )}
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+              thumbs={{
+                swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+              }}
+              modules={[Navigation, Thumbs]}
+              className="mainSwiper overflow-hidden"
+              loop={false}
+              allowTouchMove={false}
+              noSwiping={true}
+              noSwipingClass="swiper-slide"
+              onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
+              centeredSlides={false}
+              watchSlidesProgress={true}
+            >
+              {mediaItems.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className="relative">
+                    {/* Search icon at top-right */}
+                    <button
+                      className="absolute top-3 right-3 z-20 bg-white/80 hover:bg-white rounded-full p-2 shadow transition"
+                      onClick={() => handleImageClick(index)}
+                      aria-label="View image"
+                      type="button"
+                    >
+                      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      </svg>
+                      {/* Or use: <Search size={20} /> if lucide-react is imported */}
+                    </button>
+                    <div onClick={() => handleImageClick(index)}>
+                      {item.endsWith(".mp4") ? (
+                        <video
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          poster={product.thumbnail}
+                          className="w-full aspect-[3/4] object-cover"
+                        >
+                          <source src={item} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <Image
+                          src={item || "/placeholder.svg"}
+                          alt={`product-image-${index}`}
+                          width={1000}
+                          height={1333}
+                          className="w-full object-cover cursor-pointer aspect-[3/4]"
+                        />
+                      )}
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            {/* REMOVE the main swiper left/right navigation buttons below */}
+            {/* ...delete the two divs with className="swiper-button-prev-main" and "swiper-button-next-main"... */}
+          </div>
 
-                {/* Main Swiper Buttons */}
-                <div
-                  className="swiper-button-prev-main absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors"
-                  onClick={handleMainPrev}
-                  style={{ opacity: currentSlide === 0 ? 0.5 : 1, pointerEvents: currentSlide === 0 ? "none" : "auto" }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15,18 9,12 15,6"></polyline>
-                  </svg>
-                </div>
-                <div
-                  className="swiper-button-next-main absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors"
-                  onClick={handleMainNext}
-                  style={{
-                    opacity: currentSlide === mediaItems.length - 1 ? 0.5 : 1,
-                    pointerEvents: currentSlide === mediaItems.length - 1 ? "none" : "auto",
-                  }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="9,18 15,12 9,6"></polyline>
-                  </svg>
-                </div>
-              </div>
 
               {/* THUMBNAILS */}
               <div className="mt-4 relative">
@@ -1780,37 +1775,48 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                       </div>
                     </SwiperSlide>
                   ))}
+
+                          {mediaItems.length > (isMobile ? 2 : 4) && (
+              <>
+                <div
+                  className="swiper-button-prev-thumb custom-prev absolute  top-1/2 -translate-y-1/2 z-30 cursor-pointer  flex items-center justify-center h-full group bg-gray-100 "
+                  onClick={handleThumbPrev}
+                  style={{
+                    opacity: currentThumbSlide === 0 ? 0.8 : 1,
+                    pointerEvents: currentThumbSlide === 0 ? "none" : "auto",
+                  }}
+                >
+                  <Image
+                    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A00.404Z-arrow_left_without_white_glow.png"
+                    alt="Previous"
+                    width={20}
+                    height={20}
+                    className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
+                  />
+                </div>
+                <div
+                  className="swiper-button-next-thumb custom-next absolute right-[0.1px] top-1/2 -translate-y-1/2 z-30 flex items-center justify-center h-full cursor-pointer py-10 group bg-gray-100 "
+                  onClick={handleThumbNext}
+                  style={{
+                    opacity: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? 0.5 : 1,
+                    pointerEvents: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? "none" : "auto",
+                  }}
+                >
+                  <Image
+                    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A55.700Z-arrow_right_without_white_glow.png"
+                    alt="Next"
+                    width={20}
+                    height={20}
+                    className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
+                  />
+                </div>
+              </>
+                    )}
                 </Swiper>
 
                 {/* Always show arrows when there are more items than visible */}
-                {mediaItems.length > (isMobile ? 2 : 4) && (
-                  <>
-                    <div
-                      className="swiper-button-prev-thumb absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors -translate-x-2"
-                      onClick={handleThumbPrev}
-                      style={{
-                        opacity: currentThumbSlide === 0 ? 0.5 : 1,
-                        pointerEvents: currentThumbSlide === 0 ? "none" : "auto",
-                      }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                      </svg>
-                    </div>
-                    <div
-                      className="swiper-button-next-thumb absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors translate-x-2"
-                      onClick={handleThumbNext}
-                      style={{
-                        opacity: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? 0.5 : 1,
-                        pointerEvents: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? "none" : "auto",
-                      }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="9,18 15,12 9,6"></polyline>
-                      </svg>
-                    </div>
-                  </>
-                )}
+              
+             
               </div>
 
               {/* POPUP VIEW */}
@@ -1931,7 +1937,7 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
               </div>
 
               <div className="mt-7">
-                <div className="pt-6 pb-4 px-4 border border-gray-300 rounded-xl relative">
+                <div className="pt-6 pb-4 px-4 border border-gray-300  relative">
                   <div className="text-lg font-semibold px-5 bg-white absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
                     Guaranteed safe checkout
                   </div>
@@ -1956,7 +1962,7 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                 </div>
                 {isClient && (
                   <div
-                    className={`w-12 h-12 flex items-center justify-center border border-gray-300 cursor-pointer rounded-xl duration-300 hover:bg-black hover:text-white ${
+                    className={`w-12 h-12 flex items-center justify-center border border-gray-300 cursor-pointer duration-300 hover:bg-black hover:text-white ${
                       isProductInWishlist ? "bg-black" : ""
                     }`}
                     onClick={handleAddToWishlist}
@@ -1969,6 +1975,7 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                     />
                   </div>
                 )}
+                
               </div>
 
               <div className="flex items-center mt-3">
@@ -1998,7 +2005,7 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                 )}
 
                 {/* Quantity Selector */}
-                <div className="p-2 flex items-center justify-between rounded-md border border-gray-300 w-[120px] flex-shrink-0">
+                <div className="p-2 flex items-center justify-between border border-gray-300 w-[120px] flex-shrink-0">
                   <Minus
                     size={16}
                     onClick={handleDecreaseQuantity}
@@ -2012,7 +2019,7 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                 <button
                   onClick={handleAddToCart}
                   disabled={inCartExactQuantity}
-                  className={`py-2 px-4 text-sm flex items-center gap-2 border border-black rounded-md transition-all duration-300${
+                  className={`py-2 px-4 text-sm flex items-center gap-2 border border-black transition-all duration-300 ${
                     inCartExactQuantity
                       ? "bg-green-50 cursor-not-allowed opacity-70"
                       : "hover:bg-black hover:text-white"
@@ -2032,7 +2039,7 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                 <button
                   onClick={handleBuyNow}
                   disabled={isProcessing}
-                  className="py-2 px-4 text-sm bg-black text-white rounded-md hover:bg-gray-800 transition-colors flex items-center gap-2"
+                  className="py-2 px-4 text-sm bg-black text-white hover:bg-gray-800 transition-colors flex items-center gap-2"
                 >
                   {isProcessing ? (
                     <>
@@ -2046,11 +2053,11 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
               </div>
 
               {typeof product?.redeemPoints === "number" && product?.redeemPoints > 0 && (
-                <div className="mt-4 flex items-center gap-2 bg-yellow-50 border border-yellow-300 p-3  shadow-sm">
-                  <span className="text-yellow-700 font-semibold text-base">
-                    🎁 Redeem with <span className="text-lg font-bold">{product?.redeemPoints} Points</span>
+                <div className="mt-4 flex items-center gap-2 bg-gray-100 border  p-3  shadow-sm">
+                  <span className="text-black font-semibold text-base">
+                     Redeem with <span className="text-lg font-bold">{product?.redeemPoints} Points</span>
                   </span>
-                  <span className="ml-auto text-sm text-red-500 font-medium ">Order Fast!</span>
+                  <span className="ml-auto text-sm text-[#3096a5]  font-bold ">Order Fast!</span>
                 </div>
               )}
 
@@ -2191,12 +2198,24 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                   </Swiper>
 
                   {/* Arrows */}
-                  <div className="custom-swiper-prev absolute -left-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black">
-                    <ChevronLeft size={40} />
-                  </div>
-                  <div className="custom-swiper-next absolute -right-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black">
-                    <ChevronRight size={40} />
-                  </div>
+                 <div className="custom-swiper-prev absolute -left-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer  rounded-full flex items-center justify-center w-10 h-10 ">
+  <Image
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A00.404Z-arrow_left_without_white_glow.png"
+    alt="Previous"
+    width={28}
+    height={28}
+    className="transition-all duration-300"
+  />
+</div>
+<div className="custom-swiper-next absolute -right-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer  rounded-full flex items-center justify-center w-10 h-10">
+  <Image
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A55.700Z-arrow_right_without_white_glow.png"
+    alt="Next"
+    width={28}
+    height={28}
+    className="transition-all duration-300"
+  />
+</div>
                 </div>
               </motion.div>
 
