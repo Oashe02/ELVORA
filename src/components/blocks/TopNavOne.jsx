@@ -1,3 +1,4 @@
+
 "use client"
 import { useEffect, useState } from "react"
 import Image from "next/image"
@@ -11,6 +12,7 @@ import useWishlistStore from "@/store/wishlistStore"
 import { useCart } from "react-use-cart"
 import { useRouter } from "next/navigation";
 import GetAQuotePopup from "../GetAQuotePopup"
+
 
 const TopNav = ({ announcements = [], isScrolled = false }) => {
   const [currentAnnouncementIndex, setCurrentAnnouncementIndex] = useState(0)
@@ -164,11 +166,8 @@ src={
               </div>
             </DrawerContent>
           </Drawer>
-
-          {/* Cart Drawer */}
-          <Drawer direction="right" open={cartOpen} onOpenChange={setCartOpen}>
-  {/* User Icon First */}
-  <button
+ {/* User Icon First */}
+ <button
     onClick={() => router.push("/account")}
     className={`
       transition-colors duration-300
@@ -185,6 +184,9 @@ src={
       className="w-[16px] h-[26px] object-contain transition-all duration-300"
     />
   </button>
+          {/* Cart Drawer */}
+          <Drawer direction="right" open={cartOpen} onOpenChange={setCartOpen}>
+ 
 
   {/* Cart Icon */}
   <DrawerTrigger asChild>
@@ -212,7 +214,8 @@ src={
     </button>
   </DrawerTrigger>
 
-  <DrawerContent className="h-full w-full sm:w-[400px]  ">
+  {/* FIX: Added ml-auto to push the content to the right */}
+  <DrawerContent className="h-full w-full sm:w-[400px] ml-auto">
     <ShoppingCart onClose={() => setCartOpen(false)} />
   </DrawerContent>
 </Drawer>
@@ -223,5 +226,4 @@ src={
     </div>
   )
 }
-
-export default TopNav
+export default TopNav;

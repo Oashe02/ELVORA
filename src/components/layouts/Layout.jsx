@@ -4,6 +4,7 @@ import Footer from "./Footer"
 import ModernNavbar from "../home/NavBar"
 import TopNav from "../blocks/TopNavOne"
 import SliderOne from "../home/SliderOne"
+import Breadcrumb from "../global/Breadcrumb";
 
 const Layout = ({ children, announcements, categories, products, banners }) => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -32,12 +33,15 @@ const Layout = ({ children, announcements, categories, products, banners }) => {
         ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"}
       `}
       >
-        <TopNav announcements={announcements} isScrolled={isScrolled} />
+        <TopNav announcements={announcements} isScrolled={isScrolled}  />
         <ModernNavbar activeCategoriesString={JSON.stringify(categories)} isScrolled={isScrolled} />
       </div>
 
       {/* Add padding to prevent content jump when nav becomes fixed */}
-      <div className={`${isScrolled } transition-all duration-300`}>{children}</div>
+      <div className={`${isScrolled } transition-all duration-300`}>
+      <Breadcrumb />
+        {children}
+        </div>
 
       <Footer categories={categories} products={products} />
     </main>

@@ -36,7 +36,7 @@ const ShoppingCart = ({ onClose }) => {
     if (items.length === 0) return;
     setIsProcessing(true);
     try {
-      await router.push("/checkout");
+      await router.push("/cart-listing-page");
       setIsProcessing(false);
     } catch (error) {
       console.error("Error navigating to checkout:", error);

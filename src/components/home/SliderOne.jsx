@@ -12,8 +12,8 @@ import { usePathname } from "next/navigation";
 const SliderOne = ({ bannersString  }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const pathname = usePathname();
-const isProductDetailPage = pathname?.startsWith("/product");
-
+  const isProductDetailPage =
+  pathname?.startsWith("/product") || pathname?.startsWith("/cart-listing-page") || pathname?.startsWith("/checkout");
   let parsedBanners = [];
   try {
     parsedBanners = JSON.parse(bannersString || "[]");
