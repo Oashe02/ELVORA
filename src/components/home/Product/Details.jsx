@@ -1778,31 +1778,40 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                 </Swiper>
 
                 {/* Always show arrows when there are more items than visible */}
+              
                 {mediaItems.length > (isMobile ? 2 : 4) && (
                   <>
                     <div
-                      className="swiper-button-prev-thumb absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors -translate-x-2"
+                      className="swiper-button-prev-thumb custom-prev absolute -left-6 top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 group"
                       onClick={handleThumbPrev}
                       style={{
-                        opacity: currentThumbSlide === 0 ? 0.5 : 1,
+                        opacity: currentThumbSlide === 0 ? 0.8 : 1,
                         pointerEvents: currentThumbSlide === 0 ? "none" : "auto",
                       }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                      </svg>
+                      <Image
+                        src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A00.404Z-arrow_left_without_white_glow.png"
+                        alt="Previous"
+                        width={14}
+                        height={14}
+                        className=" transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
+                      />
                     </div>
                     <div
-                      className="swiper-button-next-thumb absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-colors translate-x-2"
+                      className="swiper-button-next-thumb custom-next absolute -right-6 top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 group"
                       onClick={handleThumbNext}
                       style={{
                         opacity: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? 0.5 : 1,
                         pointerEvents: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? "none" : "auto",
                       }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="9,18 15,12 9,6"></polyline>
-                      </svg>
+                      <Image
+                        src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A55.700Z-arrow_right_without_white_glow.png"
+                        alt="Next"
+                        width={14}
+                        height={14}
+                        className=" transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
+                      />
                     </div>
                   </>
                 )}
@@ -1926,7 +1935,7 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
               </div>
 
               <div className="mt-7">
-                <div className="pt-6 pb-4 px-4 border border-gray-300 rounded-xl relative">
+                <div className="pt-6 pb-4 px-4 border border-gray-300  relative">
                   <div className="text-lg font-semibold px-5 bg-white absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
                     Guaranteed safe checkout
                   </div>
