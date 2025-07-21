@@ -1775,46 +1775,48 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                       </div>
                     </SwiperSlide>
                   ))}
+
+                          {mediaItems.length > (isMobile ? 2 : 4) && (
+              <>
+                <div
+                  className="swiper-button-prev-thumb custom-prev absolute  top-1/2 -translate-y-1/2 z-30 cursor-pointer  flex items-center justify-center h-full group bg-gray-100 "
+                  onClick={handleThumbPrev}
+                  style={{
+                    opacity: currentThumbSlide === 0 ? 0.8 : 1,
+                    pointerEvents: currentThumbSlide === 0 ? "none" : "auto",
+                  }}
+                >
+                  <Image
+                    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A00.404Z-arrow_left_without_white_glow.png"
+                    alt="Previous"
+                    width={20}
+                    height={20}
+                    className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
+                  />
+                </div>
+                <div
+                  className="swiper-button-next-thumb custom-next absolute right-[0.1px] top-1/2 -translate-y-1/2 z-30 flex items-center justify-center h-full cursor-pointer py-10 group bg-gray-100 "
+                  onClick={handleThumbNext}
+                  style={{
+                    opacity: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? 0.5 : 1,
+                    pointerEvents: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? "none" : "auto",
+                  }}
+                >
+                  <Image
+                    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A55.700Z-arrow_right_without_white_glow.png"
+                    alt="Next"
+                    width={20}
+                    height={20}
+                    className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
+                  />
+                </div>
+              </>
+                    )}
                 </Swiper>
 
                 {/* Always show arrows when there are more items than visible */}
               
-                {mediaItems.length > (isMobile ? 2 : 4) && (
-                  <>
-                    <div
-                      className="swiper-button-prev-thumb custom-prev absolute -left-6 top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 group"
-                      onClick={handleThumbPrev}
-                      style={{
-                        opacity: currentThumbSlide === 0 ? 0.8 : 1,
-                        pointerEvents: currentThumbSlide === 0 ? "none" : "auto",
-                      }}
-                    >
-                      <Image
-                        src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A00.404Z-arrow_left_without_white_glow.png"
-                        alt="Previous"
-                        width={14}
-                        height={14}
-                        className=" transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
-                      />
-                    </div>
-                    <div
-                      className="swiper-button-next-thumb custom-next absolute -right-6 top-1/2 -translate-y-1/2 z-30 cursor-pointer p-3 group"
-                      onClick={handleThumbNext}
-                      style={{
-                        opacity: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? 0.5 : 1,
-                        pointerEvents: currentThumbSlide >= mediaItems.length - (isMobile ? 2 : 4) ? "none" : "auto",
-                      }}
-                    >
-                      <Image
-                        src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A55.700Z-arrow_right_without_white_glow.png"
-                        alt="Next"
-                        width={14}
-                        height={14}
-                        className=" transition-all duration-300 group-hover:drop-shadow-[0_0_8px_#3096a5]"
-                      />
-                    </div>
-                  </>
-                )}
+             
               </div>
 
               {/* POPUP VIEW */}
@@ -2196,12 +2198,24 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
                   </Swiper>
 
                   {/* Arrows */}
-                  <div className="custom-swiper-prev absolute -left-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black">
-                    <ChevronLeft size={40} />
-                  </div>
-                  <div className="custom-swiper-next absolute -right-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black">
-                    <ChevronRight size={40} />
-                  </div>
+                 <div className="custom-swiper-prev absolute -left-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer  rounded-full flex items-center justify-center w-10 h-10 ">
+  <Image
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A00.404Z-arrow_left_without_white_glow.png"
+    alt="Previous"
+    width={28}
+    height={28}
+    className="transition-all duration-300"
+  />
+</div>
+<div className="custom-swiper-next absolute -right-10 top-1/2 -translate-y-1/2 z-10 cursor-pointer  rounded-full flex items-center justify-center w-10 h-10">
+  <Image
+    src="https://mypubblicbucket.s3.ap-south-1.amazonaws.com/2025-07-18T11%3A35%3A55.700Z-arrow_right_without_white_glow.png"
+    alt="Next"
+    width={28}
+    height={28}
+    className="transition-all duration-300"
+  />
+</div>
                 </div>
               </motion.div>
 
