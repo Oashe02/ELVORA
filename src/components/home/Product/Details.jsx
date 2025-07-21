@@ -2053,11 +2053,11 @@ const ProductDetail = ({ productData, reviews, addons, addonsProducts, faqs, fee
               </div>
 
               {typeof product?.redeemPoints === "number" && product?.redeemPoints > 0 && (
-                <div className="mt-4 flex items-center gap-2 bg-yellow-50 border border-yellow-300 p-3  shadow-sm">
-                  <span className="text-yellow-700 font-semibold text-base">
-                    🎁 Redeem with <span className="text-lg font-bold">{product?.redeemPoints} Points</span>
+                <div className="mt-4 flex items-center gap-2 bg-gray-100 border  p-3  shadow-sm">
+                  <span className="text-black font-semibold text-base">
+                     Redeem with <span className="text-lg font-bold">{product?.redeemPoints} Points</span>
                   </span>
-                  <span className="ml-auto text-sm text-red-500 font-medium ">Order Fast!</span>
+                  <span className="ml-auto text-sm text-[#3096a5]  font-bold ">Order Fast!</span>
                 </div>
               )}
 
